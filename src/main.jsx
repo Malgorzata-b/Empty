@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { HashRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 import "./global.css";
 import App from "./App.jsx";
 import HomeView from "./Views/HomeView.jsx";
@@ -10,7 +10,7 @@ import ErrorView from "./Views/ErrorView.jsx";
 import CartBookView from "./Views/CartBookView.jsx";
 import Favorites from "./Views/FavoritesView.jsx";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <App />,
@@ -21,15 +21,15 @@ const router = createBrowserRouter([
         element: <HomeView />,
       },
       {
-        path: "/category/:categoryTopic",
+        path: "category/:categoryTopic",
         element: <CategoryView />,
       },
       {
-        path: "/cart/:cartID",
+        path: "cart/:cartID",
         element: <CartBookView />,
       },
       {
-        path: "/favorites",
+        path: "favorites",
         element: <Favorites />,
       },
     ],
@@ -38,8 +38,6 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <HashRouter>
-      <RouterProvider router={router} />
-    </HashRouter>
+    <RouterProvider router={router} />
   </StrictMode>
 );
